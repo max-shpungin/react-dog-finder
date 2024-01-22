@@ -20,7 +20,7 @@ import { Form } from "react-router-dom";
 function RouteList({ dogs, getDogs }) {
   return (
     <Routes>
-      <Route path="/" element={<DogList dogs={dogs}/>}></Route>
+      <Route path="/" element={<DogList dogs={dogs} getDogs={getDogs}/>}></Route>
       <Route path="/dogs/:name" element={<DogDetails dogs={dogs}/>}></Route>
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
