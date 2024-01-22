@@ -5,13 +5,25 @@ import DogList from "./DogList";
 import DogDetails from "./DogDetails";
 import { Form } from "react-router-dom";
 
-function RouteList() {
-  <Routes>
-    <Route path="/" element={DogList}></Route>
-    <Route path="/dogs/:name" element={DogDetails}></Route>
-  </Routes>;
+/**
+ * Props:
+ * - dogs : a list of all dogs
+ * - getDogs : a function to be called in parent
+ *
+ * State:
+ *  dogs - a list of dogs from the server request
+ *
+ * App --> RouteList --> DogList --> Dog
+ *
+ */
+
+function RouteList({ dogs, getDogs }) {
   return (
-    <div className="RouteList"></div>
+    <Routes>
+      <Route path="/" element={<DogList dogs={dogs}/>}></Route>
+      <Route path="/dogs/:name" element={<DogDetails dogs={dogs}/>}></Route>
+      <Route path="/*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 
