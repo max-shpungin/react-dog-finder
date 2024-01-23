@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -17,22 +17,33 @@ import RouteList from './RouteList';
  */
 
 function App() {
-  const [dogs, setDogs] = useState()
+  const [dogs, setDogs] = useState({
+    data : null,
+    needDogs : true,
+  });
+
   console.log("dogs=", dogs)
 
   async function getDogs(){
-    console.log("we are in getDogs func")
-    const response = await fetch("http://localhost:5001/dogs")
+    const response = await fetch("http://localhost:5001/dogs");
     const data = await response.json();
+    console.log("data", data)
     setDogs(data)
   }
+
+  console.log("needDogs=", dogs.needDogs)
+  if (dogs.needDogs){
+    getDogs();
+    return "Loading"
+  }
+
 
   return (
     <div className="App">
       <h1>Doggies!</h1>
       <BrowserRouter>
       <Nav dogs={dogs} />
-        <RouteList dogs={dogs} getDogs={getDogs}/>
+        <RouteList dogs={dogs} />
       </BrowserRouter>
     </div>
   );

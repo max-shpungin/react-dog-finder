@@ -1,15 +1,5 @@
 import { Link } from "react-router-dom";
 
-import whiskey from "../public/whiskey.jpg";
-import perry from "../public/perry.jpg";
-import duke from "../public/duke.jpg";
-
-// const dogePix = {
-//   whiskey : whiskey
-//   perry : perry
-//   duke :
-// }
-
 const baseURL = "../public/";
 /**
  * Props:
@@ -22,30 +12,21 @@ const baseURL = "../public/";
  *
  */
 
-async function DogList({ dogs, getDogs }) {
+function DogList({ dogs }) {
+  console.log("DogList Dogs=", dogs);
 
-  // get doges
-
-  //will need images too
-
-  await getDogs();
-
-  //show doeggeees
-
-  const dogees = dogs.map((doge) => {
-    let imgURL = baseURL + doge.name;
-    let dogURL = "/dogs" + doge.name;
+  const doggies = dogs.map(dog => {
     return (
-      <div>
-        <Link to={dogURL}>doge.name</Link>
-        <img src={imgURL} alt={doge.name} />
+      <div key={`${dog.name}`}>
+        <Link to={`/dogs/${dog.name}`}>{dog.name}</Link>
+        <img src={`/${dog.name}.jpg`} alt={dog.name} />
       </div>
     );
   });
 
   return (
     <div className="DogList">
-      {dogees}
+      {doggies}
     </div>
   );
 }
