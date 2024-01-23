@@ -1,7 +1,9 @@
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 
 /**
  * Props:
- *  Doge name
+ *  dogs - a list of fluff
  *
  * State:
  *  None
@@ -10,13 +12,36 @@
  *
  */
 
-function DogDetails(){
+function DogDetails({ dogs }) {
 
-  return (
-    <div className="DogDetails">
+  const { name } = useParams();
 
-    </div>
-  )
+  const chosenDog = dogs.filter(dog => dog.name === name)[0];
+
+  const chosenFacts = chosenDog.facts.map((fact) => {
+    return (
+      <li key={fact}> {fact}< /li>
+        )
+  })
+
+        console.log("THE CHOSEN ONE",chosenDog);
+
+        return (
+        <div className="DogDetails">
+          <div>
+            {chosenDog.name}
+          </div>
+          <div>
+            {chosenDog.age}
+          </div>
+          <img src={`/${chosenDog.src}.jpg`} alt={chosenDog.src} />
+          <ul>
+            {chosenFacts}
+          </ul>
+        </div>
+        )
 }
 
-export default DogDetails;
+        //TODO: WTF ARE YOU YELLING AT ME!?!?!?
+
+        export default DogDetails;

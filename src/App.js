@@ -22,16 +22,13 @@ function App() {
     needDogs : true,
   });
 
-  console.log("dogs=", dogs)
-
   async function getDogs(){
     const response = await fetch("http://localhost:5001/dogs");
     const data = await response.json();
-    console.log("data", data)
-    setDogs(data)
+
+    setDogs([...data], dogs.needDogs = false);
   }
 
-  console.log("needDogs=", dogs.needDogs)
   if (dogs.needDogs){
     getDogs();
     return "Loading"
