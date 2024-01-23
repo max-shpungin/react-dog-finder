@@ -22,15 +22,16 @@ function Nav({ dogs }){
 
   const doggies = dogs.map((dog)=>{
     return(
-    <div key={`${dog.name}`} style={style}>
-      <Link to={`/dogs/${dog.name}`}> {dog.name} </Link>
+    <div key={`${dog.name}`}>
+      <Link to={`/dogs/${dog.src}`}> {dog.name} </Link>
     </div>
 
     )
   })
 
   return (
-    <div className="Nav">
+    <div className="Nav" style={style}>
+      <Link to="/">Home</Link>
       {doggies}
     </div>
   )
