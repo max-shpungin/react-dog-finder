@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const baseURL = "../public/";
 /**
  * Props:
- *  doges and also get the dogges
+ *  doges -  a list of dogs from the server request
  *
  * State:
  *  None
@@ -12,6 +12,7 @@ const baseURL = "../public/";
  *
  */
 
+//name instead of src for the alt text TODO:
 function DogList({ dogs }) {
   console.log("DogList Dogs=", dogs);
 

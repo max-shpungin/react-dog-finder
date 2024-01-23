@@ -12,6 +12,7 @@ import { Link, useParams } from "react-router-dom";
  *
  */
 
+// BUT WHAT IF NO DOGE!?!? TODO:
 function DogDetails({ dogs }) {
 
   const { name } = useParams();

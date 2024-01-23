@@ -18,20 +18,22 @@ import RouteList from './RouteList';
 
 function App() {
   const [dogs, setDogs] = useState({
-    data : null,
-    needDogs : true,
+    data: null,
+    needDogs: true,
   });
 
-  async function getDogs(){
+  async function getDogs() {
     const response = await fetch("http://localhost:5001/dogs");
     const data = await response.json();
 
-    setDogs([...data], dogs.needDogs = false);
+    // setDogs([...data], dogs.needDogs = false);
+    setDogs({data, needDogs: false});
   }
 
-  if (dogs.needDogs){
+  if (dogs.needDogs) {
     getDogs();
-    return "Loading"
+    console.log("loading")
+    return "Loading";
   }
 
 
@@ -39,7 +41,7 @@ function App() {
     <div className="App">
       <h1>Doggies!</h1>
       <BrowserRouter>
-      <Nav dogs={dogs} />
+        <Nav dogs={dogs} />
         <RouteList dogs={dogs} />
       </BrowserRouter>
     </div>
